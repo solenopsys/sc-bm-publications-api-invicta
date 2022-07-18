@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ .Values.fullName }}
+spec:
+  replicas: {{ .Values.replicasCount }}
+  selector:
+    matchLabels:
+        app: {{ .Values.selectorLabel }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.fullName}}
+    spec:
+      containers:
+        - name: http-server
+          image: {{ .Values.containers.public_api.image}}
+          imagePullPolicy: {{ .Values.containers.public_api.pullPolicy}}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+            - name: dgraph.Host
+              value: "{{ .Values.containers.public_api.dgraphHost}}"
+            - name: dgraph.Port
+              value: "{{ .Values.containers.public_api.dgraphPort}}"
+            - name: server.Host
+              value: "0.0.0.0"
+            - name: server.Port
+              value: "{{ .Values.service.port}}"
+      terminationGracePeriodSeconds: 60

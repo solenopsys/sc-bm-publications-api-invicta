@@ -1,0 +1,8 @@
+apiVersion: v2
+name: public-api
+version: 0.1.0
+description: Public-API for sites
+icon: "http://alexstorm.solenopsys.org/apps/assets/public-api.svg"
+
+
+
