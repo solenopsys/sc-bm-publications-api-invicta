@@ -1,15 +1,14 @@
 replicasCount: 1
-fullName: "public-api"
-selectorLabel: "public-api"
+fullName: "alexstorm-public-api"
+selectorLabel: "alexstorm-public-api"
 
 service:
   port: 80
-
 containers:
   public_api:
-    name: public-api
-    image: registry.local/public-api
+    name: alexstorm-public-api
+    image: registry.alexstorm.solenopsys.org/alexstorm-public-api
     pullPolicy: Always
     dgraphPort: 8080
-    dgraphHost: node-port-dgraph.default.svc.cluster.local
+    dgraphHost: solenopsys-ds-dgraph.default.svc.cluster.local
 
